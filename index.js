@@ -15,6 +15,7 @@
  */
 function logNames(items) {
   // TODO: use `forEach`
+  items.forEach((item) => console.log(item.name));
 }
 
 /**
@@ -23,6 +24,7 @@ function logNames(items) {
  */
 function getUppercaseNames(items) {
   // TODO: use `map`
+  return items.map((item) => item.name[0].toUpperCase() + item.name.slice(1));
 }
 
 /**
@@ -32,6 +34,7 @@ function getUppercaseNames(items) {
  */
 function getItemById(items, id) {
   // TODO: use `find`
+  return items.find((item) => item.id === id);
 }
 
 /**
@@ -41,6 +44,7 @@ function getItemById(items, id) {
  */
 function getItemPriceByName(items, name) {
   // TODO: use a loop!
+  return items.find((item) => item.name === name).price;
 }
 
 /**
@@ -50,6 +54,7 @@ function getItemPriceByName(items, name) {
  */
 function getItemsByCategory(items, category) {
   // TODO: use `filter`
+  return items.filter((item) => item.category === category);
 }
 
 /**
@@ -57,7 +62,14 @@ function getItemsByCategory(items, category) {
  * @returns {number} the total quantity of all items
  */
 function countItems(items) {
-  // TODO: use `reduce`
+  let totalPrice = 0;
+  items.forEach((itemId) => {
+    const item = items.find((item) => item.id === itemId);
+    if (item) {
+      totalPrice += item.price;
+    }
+  });
+  return totalPrice;
 }
 
 /**
@@ -66,6 +78,11 @@ function countItems(items) {
  */
 function calculateTotalPrice(items) {
   // TODO: use `reduce`
+  return cart.reduce(
+    (total, cartItem) =>
+      (total += items.find((item) => item.id == cartItem).price),
+    0
+  );
 }
 
 // --------------------- DO NOT CHANGE THE CODE BELOW ------------------------ //
